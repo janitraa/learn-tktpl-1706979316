@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@id/motivation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greetings"
+        app:layout_constraintTop_toBottomOf="@+id/result"
         android:importantForAutofill="no" />
 
     <EditText
