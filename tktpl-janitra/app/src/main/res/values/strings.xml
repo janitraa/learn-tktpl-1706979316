@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TKTPL</string>
     <string name="hello_world">Hello World!</string>
+    <string name="greetings">Hi!\n What\'s your motivation today?</string>
+    <string name="title">Title</string>
+    <string name="motivation">Your Motivation</string>
+    <string name="motivate">Motivate</string>
+
 </resources>
