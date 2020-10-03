@@ -5,5 +5,10 @@
     <string name="title">Title</string>
     <string name="motivation">Your Motivation</string>
     <string name="motivate">Motivate</string>
-
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
+    <string name="question">Getting bored?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="theme">Change Theme</string>
 </resources>

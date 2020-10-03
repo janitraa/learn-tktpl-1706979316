@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StopwatchFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:background="@color/colorBackground"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/colorNavy"
+            android:textSize="70sp" />
+
+        <Button
+            android:id="@+id/start_stop_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_rounded_corners"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/start"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded_corners"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/reset"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+</FrameLayout>

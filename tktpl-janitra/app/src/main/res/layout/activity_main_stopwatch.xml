@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".StopwatchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <fragment
+            android:id="@+id/fragment_theme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.ThemeFragment"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="vertical"
+        android:gravity="center">
+        <fragment
+            android:id="@+id/fragment_stopwatch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.StopwatchFragment"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <fragment
+            android:id="@+id/fragment_question"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.QuestionFragment"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -2,4 +2,7 @@
 <resources>
     <color name="colorBackground">#FFC71B</color>
     <color name="colorFont">#DA0000</color>
+    <color name="colorNavy">#273E71</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGreen">#3bb143</color>
 </resources>
