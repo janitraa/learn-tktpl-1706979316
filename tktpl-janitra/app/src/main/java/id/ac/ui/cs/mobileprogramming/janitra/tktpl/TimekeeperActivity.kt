@@ -1,40 +1,35 @@
 package id.ac.ui.cs.mobileprogramming.janitra.tktpl
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.*
-import androidx.fragment.app.Fragment
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.newSingleThreadContext
 
-class QuestionFragment : Fragment() {
-
-    private var activity: StopwatchActivity? = null
+class TimekeeperActivity : AppCompatActivity() {
 
     @kotlinx.coroutines.ObsoleteCoroutinesApi
     var thread = newSingleThreadContext("test") as CoroutineDispatcher
 
-    @ObsoleteCoroutinesApi
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    @kotlinx.coroutines.ObsoleteCoroutinesApi
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_stopwatch)
 
-        val rootView = inflater.inflate(R.layout.fragment_question, container, false)
+        var imageView: ImageView = findViewById(R.id.question_image)
+        var yesButton: Button = findViewById(R.id.yes_button)
+        var noButton: Button = findViewById(R.id.no_button)
 
-        val imageView: ImageView = rootView.findViewById(R.id.question_image)
-        val yesButton: Button = rootView.findViewById(R.id.yes_button)
-        val noButton: Button = rootView.findViewById(R.id.no_button)
-
-        activity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        activity.supportActionBar!!.setDisplayShowHomeEnabled(true)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
 
         Picasso.get().setLoggingEnabled(true)
         yesButton.setOnClickListener {
@@ -44,6 +39,7 @@ class QuestionFragment : Fragment() {
                 .placeholder(R.drawable.ic_noun_loading)
                 .resize(64, 64)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                 .centerCrop()
                 .into(imageView)
         }
@@ -55,22 +51,19 @@ class QuestionFragment : Fragment() {
                 .placeholder(R.drawable.ic_noun_loading)
                 .resize(64, 64)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
                 .centerCrop()
                 .into(imageView)
         }
-
-        return rootView
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.getItemId() == android.R.id.home) {
-            getActivity()!!.finish()
+            finish()
         }
-
         return super.onOptionsItemSelected(item)
     }
 
-    /* Implementasi GlobalScope untuk Mengatasi Blocking UI */
     @kotlinx.coroutines.ObsoleteCoroutinesApi
     fun triggerANR() = GlobalScope.launch(thread) {
         while (true) {
@@ -79,7 +72,7 @@ class QuestionFragment : Fragment() {
         }
     }
 
-    interface OnBackPressed {
-        fun onBackPressed()
+    override fun onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Use Exit Button!", Toast.LENGTH_SHORT).show();
     }
 }

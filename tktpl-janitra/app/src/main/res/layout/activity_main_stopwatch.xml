@@ -4,18 +4,51 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".StopwatchActivity">
-
+    tools:context=".TimekeeperActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
-        <fragment
-            android:id="@+id/fragment_theme"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.ThemeFragment"
-            />
+        android:gravity="center"
+        android:layout_weight="2"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/question_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_noun_question"
+            android:background="@color/colorWhite"
+            android:contentDescription="@string/question"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/question"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/yes_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/colorGreen"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/yes" />
+
+        <Button
+            android:id="@+id/no_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFont"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/no" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +60,7 @@
             android:id="@+id/fragment_stopwatch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.StopwatchFragment"
+            android:name="id.ac.ui.cs.mobileprogramming.janitra.tktpl.StopwatchFragment"
             />
 
     </LinearLayout>
@@ -36,12 +69,10 @@
         android:layout_height="0dp"
         android:layout_weight="2">
         <fragment
-            android:id="@+id/fragment_question"
-            android:orientation="horizontal"
+            android:id="@+id/fragment_theme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="id.ac.ui.cs.mobileprogramming.janitra.tktpl.QuestionFragment"
+            android:name="id.ac.ui.cs.mobileprogramming.janitra.tktpl.ExitFragment"
             />
     </LinearLayout>
-
 </LinearLayout>

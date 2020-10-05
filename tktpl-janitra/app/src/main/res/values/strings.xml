@@ -10,5 +10,5 @@
     <string name="question">Getting bored?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="theme">Change Theme</string>
+    <string name="exit">Exit</string>
 </resources>
