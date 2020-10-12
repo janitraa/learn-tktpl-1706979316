@@ -66,7 +66,6 @@ class ContactListFragment: Fragment() {
         adapter.setOnItemClickCallback(object: ContactsAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Contacts, position: Int) {
                 goToSelectedContacts(data, position)
-                Toast.makeText(mView.context, "Open Selected Contact Details", Toast.LENGTH_SHORT).show()
             }
         })
     }
