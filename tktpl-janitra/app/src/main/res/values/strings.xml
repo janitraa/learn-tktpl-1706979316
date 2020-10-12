@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">TKTPL</string>
     <string name="hello_world">Hello World!</string>
+    <string name="name">Contact Name</string>
+    <string name="user">User</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="company">Company</string>
+    <string name="website">Website</string>
+    <string name="save">Save</string>
+
+
 </resources>
