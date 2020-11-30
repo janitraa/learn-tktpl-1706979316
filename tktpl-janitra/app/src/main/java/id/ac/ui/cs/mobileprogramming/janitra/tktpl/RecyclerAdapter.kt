@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerAdapter (var context: Context, var wifiList: List<ScanResult>): RecyclerView.Adapter<RecyclerAdapter.ListHolder>() {
 
     inner class ListHolder(view: View): RecyclerView.ViewHolder(view) {
-        val wifiName: TextView = view.findViewById(R.id.wifi_name_value)
+        val wifiValue: TextView = view.findViewById(R.id.value)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListHolder {
@@ -20,7 +20,7 @@ class RecyclerAdapter (var context: Context, var wifiList: List<ScanResult>): Re
     }
 
     override fun onBindViewHolder(holder: ListHolder, position: Int) {
-        holder.wifiName.text = wifiList[position].SSID
+        holder.wifiValue.text = wifiList[position].SSID
     }
 
     override fun getItemCount(): Int {

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TKTPL</string>
     <string name="hello_world">Hello World!</string>
+    <string name="name">Wifi Name</string>
+    <string name="scan">SCAN</string>
     <string name="send">SEND</string>
 </resources>

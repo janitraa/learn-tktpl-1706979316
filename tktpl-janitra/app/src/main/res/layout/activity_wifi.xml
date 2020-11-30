@@ -14,7 +14,7 @@
         android:layout_marginTop="50dp"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -22,12 +22,21 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnScan"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear1"
         android:layout_marginTop="30dp"
+        android:text="@string/scan" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear1"
+        android:layout_marginTop="80dp"
         android:visibility="invisible"
         android:text="@string/send" />
 

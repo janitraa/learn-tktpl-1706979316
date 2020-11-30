@@ -25,30 +25,35 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class WifiActivity  : AppCompatActivity() {
-    private lateinit var wifiManager: WifiManager
-    private lateinit var mScanResult: List<ScanResult>
+    private lateinit var wifiMgr: WifiManager
+    private lateinit var scanRslt: List<ScanResult>
     private lateinit var recyclerView: RecyclerView
-    private lateinit var btn: Button
+    private lateinit var btnScan: Button
+    private lateinit var btnSend: Button
     private lateinit var retrofit: ApiService
-    private val listWifi = mutableListOf<WifiModel>()
-    private val wifiScanReceiver = object : BroadcastReceiver() {
+    private val wifiList = mutableListOf<WifiModel>()
+
+    private val wifiScanRcvr = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action!! == WifiManager.SCAN_RESULTS_AVAILABLE_ACTION) {
-                mScanResult = wifiManager.scanResults
+                scanRslt = wifiMgr.scanResults
             }
             val success = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false)
             if (success) {
-                scanSuccess()
+                sucessed()
             } else {
-                scanFail()
+                failed()
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wifi)
-        wifiManager = getSystemService(Context.WIFI_SERVICE) as WifiManager
-        btn = findViewById(R.id.button)
+
+        wifiMgr = getSystemService(Context.WIFI_SERVICE) as WifiManager
+        btnScan = findViewById(R.id.btnScan)
+        btnSend = findViewById(R.id.btnSend)
         recyclerView = findViewById(R.id.recycler_view)
         retrofit = RetrofitClient.RETROFIT_SERVICE
 
@@ -57,38 +62,43 @@ class WifiActivity  : AppCompatActivity() {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 87)
         }
 
-        val intentFilter = IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
-        registerReceiver(wifiScanReceiver, intentFilter)
-        wifiManager.isWifiEnabled = true
-        wifiManager.startScan()
+        btnScan.setOnClickListener {
+            val intentFilter = IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
+            registerReceiver(wifiScanRcvr, intentFilter)
+            wifiMgr.isWifiEnabled = true
+            wifiMgr.startScan()
+        }
 
-        btn.setOnClickListener {
+        btnSend.setOnClickListener {
             GlobalScope.launch(Main) {
-                val response: Response<ResponseModel> = retrofit.submitList(listWifi)
+                val response: Response<ResponseModel> = retrofit.submitList(wifiList)
                 if (response.isSuccessful) {
-                    Toast.makeText(this@WifiActivity, "List of wifi nearby submitted to request bin", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@WifiActivity, "Submitted to request bin", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@WifiActivity, "Failed to post wifi list", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@WifiActivity, "Failed to post wifi", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun scanSuccess() {
-        val result = wifiManager.scanResults
+    private fun sucessed() {
+        val result = wifiMgr.scanResults
         for (res in result) {
             val wifiModel = WifiModel()
             wifiModel.name = res.SSID
-            listWifi.add(wifiModel)
+            wifiList.add(wifiModel)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
         val recyclerAdapter =  RecyclerAdapter(this, result)
+        runOnUiThread {
+            recyclerAdapter.notifyDataSetChanged()
+        }
         recyclerView.adapter = recyclerAdapter
-        btn.visibility = View.VISIBLE
-        unregisterReceiver(wifiScanReceiver)
+        btnSend.visibility = View.VISIBLE
+        unregisterReceiver(wifiScanRcvr)
     }
 
-    private fun scanFail() {
-        Toast.makeText(this@WifiActivity, "Failed to get list of wifi nearby", Toast.LENGTH_SHORT).show()
+    private fun failed() {
+        Toast.makeText(this@WifiActivity, "Failed to get wifi nearby", Toast.LENGTH_SHORT).show()
     }
 }
